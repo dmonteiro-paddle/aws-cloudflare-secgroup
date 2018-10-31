@@ -10,6 +10,7 @@ branches:
   - unreviewed2
   - devel
   - test_devel
+  - PLAT-113-add-travis-integration
 
 env:
   global:
