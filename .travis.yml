@@ -24,7 +24,7 @@ env:
     - secure: "LKNtLpgnxMWeqMXwDrwPOybHtX9vONiV3QP/mnaANrBOjE1ocN3e1dYAHi3x/aeQ3RGovf08sSbhoOQCVMV110vuIjICsDbClY5AQA+Z+47h/E4WrHTavNcfh0eMRiPglTuRRKEc8P6dVRJVTcuqzUMZ+HkElZDXeaHaqul1sfkb8ReZX/mP4WTg4KX4b3ew8g3Le8BNs/B6NagN3h/BIo+Vp56f0ql3dGC3toDVckL4/fYuRQts+8ZqXW6tTim1NIdLBZ6/63OpA6rH8V62/nHgjhbi01gJdzBk+Y+3hV2Xvo0C64f31ewOm/RHT8hQSL0r9+9Fe59P1rf9lZlvC3Vr/qxjfzZSHfWqQfW5u7SXla8zgPKMY5t8BEEMewe7mLJU9r8lMxN+Bsjt1nI0BUYESJv+W6Wkr+1AB+8MllNHb0k0+HqJbLOA0igi1LPTzZnXxDdpotKDm00qNzvACUh0ODjzjwM3DwiM/JauZKoxiZuDJKl500vTXhYhSgVuFFDmCsfEifSxLSR4bQ7lPF+KpMp69HKxszqA8QMinTHNdKXUjVtHMXlVQ42k0pa/a6DhCSwuDb2ho2qijGOcwRJl5420J3/PzTYPBrJpSAdRCakPTIE/6DIUgjZH1rf5bYG9D7mgqMGq04x6w+dNBMXhiEsW4p2OiA09npPH0Xc="
 
 before_script:
-  - sudo add-apt-repository ppa:ansible/ansible -y
+  - sudo add-apt-repository ppa:ansible/ansible-2.3 -y
   - sudo apt-get update
   - sudo apt-get install python3-pip shellcheck ansible
   - pip3 install -r dev-requirements.txt
