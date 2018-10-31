@@ -1,0 +1,32 @@
+sudo: required
+
+language: python
+python:
+  - "3.7"
+
+branches:
+  only:
+  - unreviewed
+  - unreviewed2
+  - devel
+  - test_devel
+
+env:
+  global:
+    - secure: "fszIyOTIttY65sVl2aKcoeMFTlwXY/KdXi5icdLUUtCMnAZ/AfTdgS+fh3I54uvA8M+GifzGzwkmK5T7ZdkDuETKT9t2FrJbG41fU2ecizsCtYEV/xkIzJzHZ/sZiZ9uqXVAYYcDOI3/CVpJy6nXey4yuJLDMaNDV6960WClED0iSSprhyX5A4YdVYUcg1KJttOzCZZX+it/hx8FGN8X3cKYdiBykuL6+RbEKDBqNhm+CP6bm1a1seROOGPIUlho6WZNa+bMjgKZdXqB1UOjww/Lc0y9azx1rcIFtrtbF59+8y2eD40zjJGbwa+/F+IyDuXJasiOqvVgp3kM6K3OIVh2p5NyhB3nvZ4qgAHAfXC/hsCAa9CkLRPRb9n1IDWMlVOVFZ5GMzdhuug7mnLhNs961m6YzHS/O9adeJUj9vK17iP8kQfxcOf9qoryrVM5YCdg92OBSUQElSiQQ/KuKxZccZkiZp9BI2cuN4Kwu8rosMny0uASDLBQNfFi3pjqZPlP5U/HDvDMetwaLxeiToAtAoUlsrg22TQ0ooc308XINZ/4RyS5DurKrIaPBeRWK01GLBP9aiYlyVUrv5/Vjei3K/4nMZSJ4Tnq7FDWC9qVM2fdYz1VV5KKGHPGzWY8nY+sGj44EXSuL0bs033Cz6Ul4awxv6ko0oFw0Zjzpm8="
+    - secure: "LKNtLpgnxMWeqMXwDrwPOybHtX9vONiV3QP/mnaANrBOjE1ocN3e1dYAHi3x/aeQ3RGovf08sSbhoOQCVMV110vuIjICsDbClY5AQA+Z+47h/E4WrHTavNcfh0eMRiPglTuRRKEc8P6dVRJVTcuqzUMZ+HkElZDXeaHaqul1sfkb8ReZX/mP4WTg4KX4b3ew8g3Le8BNs/B6NagN3h/BIo+Vp56f0ql3dGC3toDVckL4/fYuRQts+8ZqXW6tTim1NIdLBZ6/63OpA6rH8V62/nHgjhbi01gJdzBk+Y+3hV2Xvo0C64f31ewOm/RHT8hQSL0r9+9Fe59P1rf9lZlvC3Vr/qxjfzZSHfWqQfW5u7SXla8zgPKMY5t8BEEMewe7mLJU9r8lMxN+Bsjt1nI0BUYESJv+W6Wkr+1AB+8MllNHb0k0+HqJbLOA0igi1LPTzZnXxDdpotKDm00qNzvACUh0ODjzjwM3DwiM/JauZKoxiZuDJKl500vTXhYhSgVuFFDmCsfEifSxLSR4bQ7lPF+KpMp69HKxszqA8QMinTHNdKXUjVtHMXlVQ42k0pa/a6DhCSwuDb2ho2qijGOcwRJl5420J3/PzTYPBrJpSAdRCakPTIE/6DIUgjZH1rf5bYG9D7mgqMGq04x6w+dNBMXhiEsW4p2OiA09npPH0Xc="
+
+before_install:
+  - sudo apt-get install python3-pip shellcheck ansible
+  - pip3 install -r dev-requirements.txt
+  - "./lint-all-the-files.sh"
+  - "echo success"
+  - "true"
+
+script:
+  - "cp aws_credentials.shippable_template aws_credentials.yml"
+  - "ansible-playbook -vvvvv test-system.yml -i localhost,"
+  - "behave"
+
+after_script:
+  - ./push_on_success.sh
