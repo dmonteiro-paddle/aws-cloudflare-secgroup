@@ -24,7 +24,7 @@ env:
     - secure: "TYHGDZFIcpP1W/UBt/oeVMNxqQ9hw1WzKDSNIkkuXldFFSkvOqOlR49ZaqGrfxohEdePx0P8wtxAEANX7XcettZyJ3LDE48De+0B4jIClByuTS4UECjnSh7g3L54JwP74dW2vl9Yn+WjAbAkTuVvZ+5UfifCx9MSqpD+vvbfJTx3XXGEVXOcpMTyqD4acrcwz6R9V7yFieS/7wyAFhUD+Jkr2ZLEiv9q/3PtdEgsCoQuXhV6SxQNplJzc0TuVGZvjEoWyDsUTGs1HRXfA7FQ7wpEK6QRqCZDsdOxygWgHdn1hvR6u4OezFMas+V9dQjM+J+ibfMf0FPyF1GQmkuEJPVPIrG3HjqaB+20eTYh8qhvgKaZIn783bb6F+rVMvBfovVxZpsYghV/DZk+VrBuiLRGsBBz85TvTCk2U0Llzb/VzDwA0GU6lqzHYwNVu/UtprHexhIPaMNyVXOxdW68OBzEP62y7DxZn21xy4Q0F8zP6aLyhluhVmi1cScN3GxpmxlLsCNCS0I0LoqdaNF1bWTWm1XlZzAv5a3yD/EWBlmBwhzIWxhglLsAWlHUk1KJF3kx5xfQDTwYxcFO3NhPzgla/QfH9ecOTO86uW+DgmSp40Y96SnISn3wUn/AFZHV1vOh2comrWJWhwG06S/nAN9IGJXMpZXSVjSc/D/XgSA="
 
 before_script:
-  - sudo add-apt-repository ppa:ansible/ansible-2.3 -y
+  - sudo add-apt-repository ppa:ansible/ansible -y
   - sudo apt-get update
   - sudo apt-get install python3-pip shellcheck ansible
   - ansible --version
@@ -38,3 +38,5 @@ script:
   - "cp aws_credentials.shippable_template aws_credentials.yml"
   - "ansible-playbook -vvvvv test-system.yml -i localhost,"
   - "behave"
+# after_script:
+# - ./push_on_success.sh
