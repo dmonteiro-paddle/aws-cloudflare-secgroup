@@ -38,5 +38,3 @@ script:
   - "cp aws_credentials.shippable_template aws_credentials.yml"
   - "ansible-playbook -vvvvv test-system.yml -i localhost,"
   - "behave"
-# after_script:
-# - ./push_on_success.sh
