@@ -1,3 +1,4 @@
+---
 sudo: required
 
 language: python
@@ -6,11 +7,11 @@ python:
 
 branches:
   only:
-  - unreviewed
-  - unreviewed2
-  - devel
-  - test_devel
-  - PLAT-113-add-travis-integration
+    - unreviewed
+    - unreviewed2
+    - devel
+    - test_devel
+    - PLAT-113-add-travis-integration
 
 env:
   global:
@@ -28,6 +29,3 @@ script:
   - "cp aws_credentials.shippable_template aws_credentials.yml"
   - "ansible-playbook -vvvvv test-system.yml -i localhost,"
   - "behave"
-
-#after_script:
-#  - ./push_on_success.sh
