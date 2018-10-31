@@ -29,5 +29,5 @@ script:
   - "ansible-playbook -vvvvv test-system.yml -i localhost,"
   - "behave"
 
-after_script:
-  - ./push_on_success.sh
+#after_script:
+#  - ./push_on_success.sh
