@@ -25,6 +25,7 @@ env:
 
 before_script:
   - sudo add-apt-repository ppa:ansible/ansible -y
+  - sudo apt-get update
   - sudo apt-get install python3-pip shellcheck ansible
   - pip3 install -r dev-requirements.txt
   - "./lint-all-the-files.sh"
